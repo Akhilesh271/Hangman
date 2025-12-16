@@ -4,15 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.ArrayList;
 
-// THE MODEL: Pure Data and Logic
+// Model
 public class HangmanModel {
     private String secretWord;
-    private StringBuilder currentProgress; // The "___a_b_" string
+    private StringBuilder currentProgress;
     private int attemptsRemaining;
     private int maxAttempts;
     private Set<Character> guessedLetters;
 
-    // Enum to represent the state of the game
     public enum GameStatus { PLAYING, WON, LOST }
 
     public HangmanModel(String word, int maxAttempts) {
@@ -23,11 +22,11 @@ public class HangmanModel {
         this.currentProgress = new StringBuilder("_".repeat(word.length()));
     }
 
-    // The Core Logic: Returns true if the guess was valid and new
+    // Returns true if the guess was valid and new
     public boolean processGuess(char c) {
         char guess = Character.toUpperCase(c);
 
-        // Validation: Is it a letter? Is it already guessed?
+        // Validation
         if (!Character.isLetter(guess) || guessedLetters.contains(guess)) {
             return false;
         }
@@ -35,7 +34,7 @@ public class HangmanModel {
         guessedLetters.add(guess);
 
         if (secretWord.indexOf(guess) >= 0) {
-            // Correct Guess: Update the progress string
+            // Update the progress string for correct guesses
             for (int i = 0; i < secretWord.length(); i++) {
                 if (secretWord.charAt(i) == guess) {
                     currentProgress.setCharAt(i, guess);
@@ -49,7 +48,7 @@ public class HangmanModel {
     }
 
     public Set<Character> getWrongGuesses() {
-        // Return all guessed letters that are NOT in the secret word
+        // Return all guessed letters that are not in the secret word
         Set<Character> wrong = new HashSet<>(guessedLetters);
         for(char c : secretWord.toCharArray()) {
             wrong.remove(c);
@@ -63,7 +62,7 @@ public class HangmanModel {
         return GameStatus.PLAYING;
     }
 
-    // Getters for the View to display
+    // Getters
     public String getCurrentProgress() { return currentProgress.toString(); }
     public int getAttemptsRemaining() { return attemptsRemaining; }
     public String getSecretWord() { return secretWord; }

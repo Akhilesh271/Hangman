@@ -2,7 +2,7 @@ package com.hangman;
 
 import java.util.Scanner;
 
-// THE CONTROLLER: Connects User Input to Model
+// Connects User Input to Model
 public class HangmanController {
     private HangmanModel model;
     private ConsoleView view;

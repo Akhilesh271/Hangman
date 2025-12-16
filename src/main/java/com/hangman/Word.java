@@ -9,10 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Word {
-    // Stores words by difficulty: "Easy" -> ["apple", "grape"]
     private HashMap<String, ArrayList<String>> wordList = new HashMap<>();
-
-    // We also keep a flat list of ALL words for the AI to use later
     private ArrayList<String> allWords = new ArrayList<>();
 
     public Word() {
@@ -21,13 +18,10 @@ public class Word {
 
     private void readWords() {
         try {
-            // This is the Maven-safe way to read files
-            // We use the slash to say "Look in the root of resources"
-// We use .txt because the file is a text file (even if IntelliJ hides the .txt)
+
             InputStream is = getClass().getResourceAsStream("/words.txt");
 
             if (is == null) {
-                // Fallback: try without .txt just in case
                 is = getClass().getResourceAsStream("/words");
             }
 
@@ -38,7 +32,7 @@ public class Word {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(" ");
-                if (parts.length < 2) continue; // Skip bad lines
+                if (parts.length < 2) continue;
 
                 String wordText = parts[0];
                 String difficulty = parts[1];
@@ -46,8 +40,6 @@ public class Word {
                 // Add to difficulty map
                 wordList.putIfAbsent(difficulty, new ArrayList<>());
                 wordList.get(difficulty).add(wordText);
-
-                // Add to master list (for AI)
                 allWords.add(wordText);
             }
         } catch (Exception e) {

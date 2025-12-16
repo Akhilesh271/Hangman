@@ -21,17 +21,16 @@ public class HangmanApp extends Application {
     private Canvas canvas;
     private Label wordLabel;
     private Label statusLabel;
-    private Label hintLabel; // Shows the AI suggestion
+    private Label hintLabel;
 
     @Override
     public void start(Stage primaryStage) {
-        // Initialize Logic
         wordBank = new Word();
         ai = new SolverAI();
-        // Start a Hard game by default for now
+        // Start a Hard game (Change to variable selected difficulty later)
         model = new HangmanModel(wordBank.selectWord("Hard"), 6);
 
-        // UI Components
+        // UI
         canvas = new Canvas(300, 250);
         wordLabel = new Label(formatWord(model.getCurrentProgress()));
         wordLabel.setFont(new Font("Courier New", 30)); // Monospace for alignment
@@ -50,7 +49,7 @@ public class HangmanApp extends Application {
         aiButton.setOnAction(e -> {
             char suggestion = ai.getBestGuess(
                     model.getCurrentProgress(),
-                    model.getWrongGuesses(), // You need to add this getter to Model
+                    model.getWrongGuesses(),
                     wordBank.getAllWords()
             );
             hintLabel.setText("AI Suggests: " + Character.toUpperCase(suggestion));
@@ -101,7 +100,6 @@ public class HangmanApp extends Application {
         return word.replace("", " ").trim();
     }
 
-    // --- Simple Drawing ---
     private void drawGallows(GraphicsContext gc) {
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(3);
