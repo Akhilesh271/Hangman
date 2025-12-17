@@ -54,3 +54,10 @@ src/main/java/com/hangman/
 ├── HangmanModel.java    # Game State & Logic (Model)
 ├── SolverAI.java        # The Probability Algorithm
 └── Word.java            # Resource Loader
+
+
+## 📸 Screenshots
+
+![Hangman Gameplay](./game-screenshot.png)
+
+*The game in action: The AI suggests 'Q' based on probability.*
