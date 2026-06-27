@@ -1,4 +1,4 @@
-# 🕹️ Smart Hangman (JavaFX + AI Solver)
+#  Smart Hangman (JavaFX + AI Solver)
 
 A robust desktop application that modernizes the classic Hangman game using **JavaFX** and a **Model-View-Controller (MVC)** architecture. 
 
@@ -28,7 +28,7 @@ The Solver is not a neural network, but a **Constraint Satisfaction Algorithm**.
 3.  **Frequency Analysis:** It calculates the frequency of every remaining letter in the valid candidate list.
 4.  **Probability Ranking:** It suggests the letter with the highest occurrence probability that hasn't been guessed yet.
 
-## 🚀 How to Run
+## How to Run
 
 ### Prerequisites
 * JDK 21 or higher
